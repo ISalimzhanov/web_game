@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script src="src/main.js"></script>
+    <title>KeypressRacer</title>
+</head>
+<body>
+<h1>
+    Keypress racer
+</h1>
+<hr>
+<div id="main">
+    <h4 style="text-align:center">
+        Score:
+        <snap id="score" style="margin-right: 0"> 0</snap>
+        wpm
+    </h4>
+    <p id="textSnaps">
+        <snap id="done" style="color:#00ff00"></snap>
+        <snap id="contentDone" style="color:#00bfff;"></snap><!--
+        --><snap id="contentWait"></snap>
+        <snap id="waiting" style="color:red">
+            Take a look around me <br>
+            Taking pages from a magazine <br>
+            Been looking for the answer <br>
+            Ever since we were seventeen <br>
+            You know the truth can be a weapon <br>
+            To fight this world of ill intentions
+        </snap>
+    </p>
+    <p id="typingField" style="text-align:center">
+        <em>Type here</em>
+        <br>
+        <label>
+            <input type="text" id="typed" onkeyup="checkTyped();">
+        </label>
+    </p>
+</div>
+<script>
+    setCurrentTime();
+    fillContentWait();
+    timeout = setInterval(updateScore, 500);
+</script>
+</body>
+</html>
