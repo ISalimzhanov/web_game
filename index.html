@@ -8,11 +8,16 @@
             margin-left: auto;
             margin-right: auto;
         }
+        snap {
+            block-size: 300px;
+        }
     </style>
+
+    <link rel="stylesheet" href="fontello-ie7.css">
     <script src="src/main.js"></script>
     <title>KeypressRacer</title>
 </head>
-<body>
+<body style=>
 <h1>
     Keypress racer
 </h1>
@@ -24,21 +29,12 @@
         wpm
     </h4>
     <p id="textSnaps">
-        <snap id="done" style="color:#00ff00"></snap>
-        <snap id="contentDone" style="color:#00bfff;"></snap><!--
-        --><snap id="contentWait"></snap>
-        <snap id="waiting" style="color:red">
-            Take a look around me <br>
-            Taking pages from a magazine <br>
-            Been looking for the answer <br>
-            Ever since we were seventeen <br>
-            You know the truth can be a weapon <br>
-            To fight this world of ill intentions
-        </snap>
+        <snap id="done"></snap>
+        <snap id="contentDone" style=></snap><!--
+        --><snap id="contentError"></snap>>--><snap id="contentWait" style=></snap>
+        <snap id="waiting" style="white-space:pre-wrap">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</snap>
     </p>
     <p id="typingField" style="text-align:center">
-        <em>Type here</em>
-        <br>
         <label>
             <input type="text" id="typed" onkeyup="checkTyped();">
         </label>

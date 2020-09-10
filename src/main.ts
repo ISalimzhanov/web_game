@@ -29,7 +29,7 @@ function checkTyped() {
     let waiting: HTMLElement = document.getElementById("waiting") as HTMLElement;
     if (waiting.innerText.length != 0) {
         let done: HTMLElement = document.getElementById("done");
-        const waitingWords: string[] = waiting.innerText.split(" "  );
+        const waitingWords: string[] = waiting.innerText.split(" ");
         done.innerText += " " + contentDone.innerText;
         contentWait.innerText = waitingWords[0];
         contentDone.innerText = "";
@@ -37,7 +37,8 @@ function checkTyped() {
         typed.value = "";
         for (let i: number = 1; i < waitingWords.length; ++i) {
             waiting.innerText += waitingWords[i];
-            waiting.innerText += " ";
+            if (i != waitingWords.length - 1)
+                waiting.innerText += " ";
         }
     } else {
         let main: HTMLElement = document.getElementById("main");
@@ -74,11 +75,11 @@ function updateScore() {
         n_words = done.innerText.split(" ").length;
     let current_time = new Date().getTime();
     let creation_time: number = parseInt(timeField.innerText);
-    scoreField.innerText = Math.trunc(n_words / (current_time - creation_time) * 6000).toString();
+    let minInterval: number = (current_time - creation_time) / 1000 / 60;
+    scoreField.innerText = Math.trunc(n_words/minInterval).toString();
 }
 
 function fillContentWait() {
-    console.log("WTF");
     let contentWait: HTMLElement = document.getElementById("contentWait") as HTMLInputElement;
     let waiting: HTMLElement = document.getElementById("waiting") as HTMLElement;
     let waitingWords: string[] = waiting.innerText.split(" ");
@@ -87,6 +88,8 @@ function fillContentWait() {
     waiting.innerText = "";
     for (let i: number = 1; i < waitingWords.length; ++i) {
         waiting.innerText += waitingWords[i];
-        waiting.innerText += " ";
+        if (i != waitingWords.length - 1)
+            waiting.innerText += " ";
     }
+    console.log(waiting.innerText)
 }
