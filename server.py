@@ -12,6 +12,11 @@ def wait():
     return render_template("main.html")
 
 
+@app.route('/racing<player_id>', methods=['GET'])
+def racing(player_id):
+    return render_template('racing.html', player_id=player_id)
+
+
 @app.route('/', methods=['POST'])
 def response_handler():
     req = request.get_data().decode()
@@ -30,14 +35,14 @@ def new_player() -> int:
 
 
 @method
-def is_started(player_id: int) -> bool:
+def is_started(player_id: int) -> tuple:
     '''
     :param player_id:
     :return:
     '''
     db_handler = DbHandler()
     race_id, n_players = db_handler.get_race_info(player_id)
-    return n_players == race_capacity
+    return n_players, n_players == race_capacity
 
 
 @method

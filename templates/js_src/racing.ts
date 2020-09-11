@@ -1,7 +1,6 @@
-import DateTimeFormat = Intl.DateTimeFormat;
-import Timeout = NodeJS.Timeout;
-
-let timeout: Timeout;
+const rpc = require('json-rpc2');
+const client = rpc.Client.$create(5000, 'localhost')
+let timeout;
 
 function checkTyped() {
     let typed: HTMLInputElement = document.getElementById("typed") as HTMLInputElement;
@@ -41,18 +40,20 @@ function checkTyped() {
                 waiting.innerText += " ";
         }
     } else {
-        let main: HTMLElement = document.getElementById("main");
-        let text: HTMLElement = document.getElementById("textSnaps");
-        let typingField: HTMLElement = document.getElementById("typingField");
-        text.remove();
-        typingField.remove();
-        let result: HTMLImageElement = document.createElement("img");
-        result.src = "crown.png";
-        result.setAttribute("alt", "You won");
-        result.setAttribute("width", "256");
-        result.setAttribute("height", "256");
-        clearTimeout(timeout);
-        main.appendChild(result);
+        let score: number = parseInt(document.getElementById("score").innerText);
+        let player_id: number = parseInt(document.getElementById("player_id").innerText)
+        client.call('finished', [player_id, score], function (err, result) {
+            if (err) throw err;
+            let main: HTMLElement = document.getElementById("main");
+            let text: HTMLElement = document.getElementById("textSnaps");
+            let typingField: HTMLElement = document.getElementById("typingField");
+            let standing: HTMLElement = document.createElement("p");
+            text.remove();
+            typingField.remove();
+            standing.innerText = result.toString();
+            clearTimeout(timeout);
+            main.appendChild(standing);
+        })
     }
 }
 
@@ -76,7 +77,7 @@ function updateScore() {
     let current_time = new Date().getTime();
     let creation_time: number = parseInt(timeField.innerText);
     let minInterval: number = (current_time - creation_time) / 1000 / 60;
-    scoreField.innerText = Math.trunc(n_words/minInterval).toString();
+    scoreField.innerText = Math.trunc(n_words / minInterval).toString();
 }
 
 function fillContentWait() {
