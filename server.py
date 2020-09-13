@@ -64,13 +64,12 @@ def finished(player_id: int, score: int) -> int:
 
 
 def prepare_db():
-    db_handler = DbHandler()
     try:
         open('myDb.db', 'r')
     except FileNotFoundError:
+        db_handler = DbHandler()
         db_handler.create()
 
 
 if __name__ == '__main__':
-    prepare_db()
     app.run(debug=True)
