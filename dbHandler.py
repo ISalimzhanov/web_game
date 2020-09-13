@@ -119,7 +119,7 @@ class DbHandler:
         '''
         c = self.conn.cursor()
         res = self.get_race_res(race_id)
-        if not res[len(res) - 1][1]:
+        if not res[len(res) - 1][1] or len(res) != race_capacity:
             raise ValueError
         c.execute(f'''SELECT player_id FROM player WHERE player.race_id == {race_id}''')
         players = c.fetchall()

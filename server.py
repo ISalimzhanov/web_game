@@ -73,4 +73,6 @@ def prepare_db():
 
 if __name__ == '__main__':
     prepare_db()
-    app.run(debug=True)
+    new_player()
+    finished(player_id=1, score=5)
+    #app.run(debug=True)
