@@ -9,12 +9,12 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def wait():
-    return render_template("main.html")
+    return render_template("dist/main.html")
 
 
 @app.route('/racing<player_id>', methods=['GET'])
 def racing(player_id):
-    return render_template('racing.html', player_id=player_id)
+    return render_template('dist/racing.html', player_id=player_id)
 
 
 @app.route('/', methods=['POST'])

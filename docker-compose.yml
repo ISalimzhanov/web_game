@@ -1,0 +1,19 @@
+---
+version: "3"
+
+services:
+  webapp:
+    image: 'thedeadferryman/innodsp1-webapp:latest'
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus:   "0.15"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+
+  nginx:
+    image: 'thedeadferryman/innodsp1-nginx:latest'
+    ports:
+    - 8080:80
